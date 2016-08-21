@@ -83,6 +83,66 @@ var bldgData = {
                 "IMAGE" : "portolan.jpg"
 			},
 			"type" : "Feature"
+		},  {
+			"geometry" : {
+				"coordinates" : [6.773876, 51.431708],
+				"type" : "Point"
+			},
+			"id" : "8",
+			"properties" : {
+				"NAME" : "1569 AD: Mercator's Projection",
+				"BODY" : "During the Renaissance Gerardus Mercator, of the famous Belgium school of cartography, comes up with the projection that made it possible for navigators to draw straight lines between two points and use compasses to navigate between those points. The poles are distorted e.g. Greenland.",
+                "IMAGE" : "mercator.gif"
+			},
+			"type" : "Feature"
+		},  {
+			"geometry" : {
+				"coordinates" : [2.352222, 48.856614],
+				"type" : "Point"
+			},
+			"id" : "9",
+			"properties" : {
+				"NAME" : "1669 AD: First Topographic Map",
+				"BODY" : "Cassini family hired to map France by means of geometric principles of triangulation… this job took until 1745 when it was published as a map set that provided the first basis for large scale topopgraphic mapping.",
+                "IMAGE" : "firsttopo.jpg"
+			},
+			"type" : "Feature"
+		},  {
+			"geometry" : {
+				"coordinates" : [-0.127758, 51.507351],
+				"type" : "Point"
+			},
+			"id" : "10",
+			"properties" : {
+				"NAME" : "1700 AD: Tracking Longitude in Transit",
+				"BODY" : "John Harrison, a self-educated English carpenter and clockmaker, solves the problem of calculating longitude while at sea.",
+                "IMAGE" : "longitude.jpg"
+			},
+			"type" : "Feature"
+		},  {
+			"geometry" : {
+				"coordinates" : [-87.629798, 41.878114],
+				"type" : "Point"
+			},
+			"id" : "11",
+			"properties" : {
+				"NAME" : "1856 - present: Rand McNally Maps",
+				"BODY" : "William Rand and Andrew McNally in the railroad boomtown started creating foldout maps of the nations train routes. Later, Rand McNally creating road maps for gas stations in America as the automobile becomes the primary mode of transportation in America.",
+                "IMAGE" : "randmcnally.jpg"
+			},
+			"type" : "Feature"
+		},  {
+			"geometry" : {
+				"coordinates" : [-74.005941, 40.712784],
+				"type" : "Point"
+			},
+			"id" : "11",
+			"properties" : {
+				"NAME" : "1994- present: COMSTAT",
+				"BODY" : "NYPD begins using maps and statistics together to manage crime and policing efforts.",
+                "IMAGE" : "comstat.jpg"
+			},
+			"type" : "Feature"
 		}           
 	],
 	"type" : "FeatureCollection"
