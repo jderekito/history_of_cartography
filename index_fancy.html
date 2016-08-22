@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Credit to Mark Lee @ https://codepen.io/leemark -->
+        <meta charset="utf-8"/>
+        <script src="jquery/jquery-1.12.1.min.js"></script>
+        <link rel="stylesheet" href="jqueryui/jquery-ui.css">
+        <link rel="stylesheet" href="leaflet/leaflet.css" />
+
+        <script src="leaflet/leaflet.js"></script>
+        <script src="jqueryui/jquery-ui.js"></script>
+        <script src="leaflet/leaflet.js"></script>
+        <script src="leaflet/leaflet.js"></script>       
+        <style>
+            body {
+              margin: 0;
+              overflow: hidden;
+              font-family: 'Roboto', sans-serif;
+              font-size: 90%;
+            }
+
+            #mapwrap {
+              width: 100%;
+              height: 600px;
+              height: 100vh;
+              border: 1px solid #333;
+              position: relative;
+              overflow: hidden;
+            }
+
+            #leafletmap {
+              width: 100%;
+              height: 600px;
+              height: 100vh;
+            }
+
+            #toolbar {
+              background: rgba(255, 255, 255, 1);
+              opacity: .6;
+              width: 200px;
+              height: 600px;
+              height: 100vh;
+              position: absolute;
+              left: -200px;
+              z-index: 1;
+              transition: .5s left;
+              padding: 20px;
+              box-sizing: border-box;
+            }
+
+            #toolbar.open {
+              left: 0;
+              opacity: .95;
+            }
+
+            #toolbar .cartograpy {
+              height: 100px;
+              width: 25px;
+              background: #000;
+              box-shadow: 1px 0 2px rgba(0, 0, 0, .3);
+              position: absolute;
+              right: -25px;
+              top: 40%;
+              border-top-right-radius: 3px;
+              border-bottom-right-radius: 3px;
+              border: 1px solid #333;
+              cursor: pointer;
+            }
+
+            .cartograpy span {
+              color: #fff;
+              display: inline-block;
+              position: relative;
+              right: 0px;
+              transform: rotate(90deg);
+              top: 39px;
+              left: -21px;
+            }
+
+            #events {
+              overflow-y: scroll;
+              max-height: 95vh;
+            }
+
+            #toolbar ul {
+              margin: 0;
+              padding: 0;
+            }
+
+            #toolbar li {
+              list-style-type: none;
+              border-bottom: 1px solid #ccc;
+              padding: 6px 3px;
+              cursor: pointer;
+            }
+
+            #toolbar li:hover {
+              color: #666;
+            }
+
+            .notify-icon span{
+              display: inline-block;
+              border: 1px solid orange;
+              border-radius: 50%;
+              height: 24px; 
+              width: 24px;
+              animation: pulse .6s 4 forwards;
+              transform-origin: center center;
+            }
+            @keyframes pulse{
+              0%{
+                transform: scale(5.5);
+                opacity: .2;
+              }
+              50%{
+                opacity: .8;
+              }
+              100%{
+                transform: scale(.1);
+                opacity: 1;
+              }
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                $('#toolbar .cartograpy').on('click', function() {
+                  $(this).parent().toggleClass('open');
+                });
+                
+                $( "#dialog" ).dialog({
+                    autoOpen: false,
+                    resizable: false,
+                    modal: true,
+                });                
+   
+                var map = L.map('leafletmap', {
+                  zoomControl: false
+                });
+                
+                //var mapTiles = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                //  maxZoom: 19,
+                //  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                //});
+                
+                
+                http://maps.stamen.com/
+                var mapTiles = L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg', {
+                  maxZoom: 19,
+                  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                });
+
+                mapTiles.addTo(map);
+                
+                new L.Control.Zoom({
+                  position: 'topright'
+                }).addTo(map);
+                map.setView([37.983810, 23.727539], 3);
+                
+                var buildingLayers = L.layerGroup().addTo(map);
+                
+                L.geoJson(bldgData, {
+                  onEachFeature: function(feature, layer) {
+                    var thisLayer = layer;
+                    // layer.bindPopup(feature.properties.NAME);
+                    var $listItem = $('<li>').html(feature.properties.NAME).appendTo('#toolbar ul');
+                    $listItem.on('click', function(){
+                      buildingLayers.clearLayers(); // remove existing markers
+                      var thisLat = thisLayer.feature.geometry.coordinates[1];
+                      var thisLon = thisLayer.feature.geometry.coordinates[0];
+                      map.panTo([thisLat,thisLon]);
+                      //thisLayer.addTo(map);
+                      buildingLayers.addLayer(thisLayer);
+                      var notifyIcon = L.divIcon({
+                        className: 'notify-icon',
+                        iconSize: [25, 25],
+                        html: '<span></span>'
+                        });
+                      var notifyMarker = L.marker([thisLat,thisLon], {icon: notifyIcon})
+                      buildingLayers.addLayer(notifyMarker);
+                      
+                      if(map.getSize().x < 768){
+                        $('#toolbar').removeClass('open');
+                      }
+                      thisLayer.on('click', function(e){
+                        //map.setView(e.latlng, 13);
+                        var url = 'images/' + thisLayer.feature.properties.IMAGE;
+                        $('#dialog').dialog({resizable:true});
+                        $('#dialog').dialog('open').text(thisLayer.feature.properties.BODY);
+                        $('#dialog').dialog('option', 'title', thisLayer.feature.properties.NAME)
+                        $("#dialog").append("<img src='"+url+"' id='myNewImage' />");
+                      });
+                    });
+                  }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="mapwrap">
+          <div id="toolbar">
+            <div class="cartograpy">
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Events</span>
+            </div>
+            <div id="events">
+              <h2>Historical Events</h2>
+              <ul>
+              </ul>
+            </div>
+          </div>
+          <div id="leafletmap">
+            <div id="dialog" title="Event" style="display:none"> Some text</div>
+          </div>
+        </div>
+        <script src="carto_hist_places.js"></script>
+        <!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/67683/ccbuildings.js"></script> -->
+    </body>
+</html>
