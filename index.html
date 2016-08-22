@@ -4,12 +4,13 @@
         <!-- Credit to Mark Lee @ https://codepen.io/leemark -->
         <meta charset="utf-8"/>
         <script src="jquery/jquery-1.12.1.min.js"></script>
-        <link rel="stylesheet" href="leaflet/leaflet.css" />
         <link rel="stylesheet" href="jqueryui/jquery-ui.css">
+        <link rel="stylesheet" href="leaflet/leaflet.css" />
+
         <script src="leaflet/leaflet.js"></script>
         <script src="jqueryui/jquery-ui.js"></script>
         <script src="leaflet/leaflet.js"></script>
-        <script src="leaflet/leaflet.js"></script>        
+        <script src="leaflet/leaflet.js"></script>       
         <style>
             body {
               margin: 0;
@@ -132,7 +133,7 @@
                     modal: true,
                 });                
    
-                var mymap = L.map('leafletmap', {
+                var map = L.map('leafletmap', {
                   zoomControl: false
                 });
                 
@@ -141,21 +142,56 @@
                 //  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 //});
                 
+                
                 //http://maps.stamen.com/
-                var mapTiles = L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg', {
-                  maxZoom: 19,
-                  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                });
+                //var mapTiles = L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg', {
+                //  maxZoom: 19,
+                //  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                //});
 
+                //mapTiles.addTo(map);
+                
+                //new L.Control.Zoom({
+                //  position: 'topright'
+                //}).addTo(map);
 
-                mapTiles.addTo(mymap);
-                mymap.setView([37.983810, 23.727539], 3);
-                new L.Control.Zoom({
-                  position: 'topright'
-                }).addTo(mymap);
+                var tnmBasemapViewer = L.tileLayer('http://basemap.nationalmap.gov/ArcGIS/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
+                        maxZoom: 14,
+                        attribution: "U.S. Department of the Interior"
+                        });
 
-                var buildingLayers = L.layerGroup().addTo(mymap);
+                        var tnmBasemapNavigator = L.tileLayer('http://navigator.er.usgs.gov/tiles/tcr.cgi/{z}/{x}/{y}.png', {
+                                maxZoom: 20,
+                                attribution: "U.S. Department of the Interior"
+                                });
 
+                        // Add overlays
+                        var highways = L.tileLayer.wms("http://services.nationalmap.gov/ArcGIS/services/transportation/MapServer/WMSServer?", {
+                            layers: '6',
+                            format: 'image/png',
+                            transparent: true,
+                        });
+
+                        // Add baselayers and overlays to groups
+                        var baseLayers = {
+                            "The National Map (Viewer)" : tnmBasemapViewer,
+                            "The National Map (Navigator)" : tnmBasemapNavigator
+                        };
+                        var overlays = {
+                            "Highways": highways
+                        };
+                        var controlLayers = L.control.layers(baseLayers, overlays);
+
+                        // Add the main baselayer to the map as a default (so it loads when the map
+                        // is loaded
+                        tnmBasemapViewer.addTo(map);
+
+                        // Add the layer selector control to the map
+                        controlLayers.addTo(map);                
+                map.setView([37.983810, 23.727539], 3);
+                
+                var buildingLayers = L.layerGroup().addTo(map);
+                
                 L.geoJson(bldgData, {
                   onEachFeature: function(feature, layer) {
                     var thisLayer = layer;
@@ -165,22 +201,22 @@
                       buildingLayers.clearLayers(); // remove existing markers
                       var thisLat = thisLayer.feature.geometry.coordinates[1];
                       var thisLon = thisLayer.feature.geometry.coordinates[0];
-                      mymap.panTo([thisLat,thisLon]);
-                      //thisLayer.addTo(mymap);
+                      map.panTo([thisLat,thisLon]);
+                      //thisLayer.addTo(map);
                       buildingLayers.addLayer(thisLayer);
                       var notifyIcon = L.divIcon({
                         className: 'notify-icon',
                         iconSize: [25, 25],
                         html: '<span></span>'
                         });
-                      var notifyMarker = L.marker([thisLat,thisLon], {icon: notifyIcon});
+                      var notifyMarker = L.marker([thisLat,thisLon], {icon: notifyIcon})
                       buildingLayers.addLayer(notifyMarker);
                       
-                      if(mymap.getSize().x < 768){
+                      if(map.getSize().x < 768){
                         $('#toolbar').removeClass('open');
                       }
                       thisLayer.on('click', function(e){
-                        //mymap.setView(e.latlng, 13);
+                        //map.setView(e.latlng, 13);
                         var url = 'images/' + thisLayer.feature.properties.IMAGE;
                         $('#dialog').dialog({resizable:true});
                         $('#dialog').dialog('open').text(thisLayer.feature.properties.BODY);
