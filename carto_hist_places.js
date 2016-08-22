@@ -91,7 +91,7 @@ var bldgData = {
 			"id" : "6",
 			"properties" : {
 				"NAME" : "600-1400 AD: T-O Maps",
-				"BODY" : "Isidore of Seville, a bishop in Spain where The T is the Mediterranean, dividing the three continents, Asia, Europe and Africa, and the O is the surrounding Ocean. Jerusalem was generally represented in the center of the map. Asia was typically the size of the other two continents combined.",
+				"BODY" : "Isidore of Seville, a bishop in Spain where The T is the Mediterranean, dividing the three continents, Asia, Europe and Africa, and the O is the surrounding Ocean. Jerusalem was generally represented in the center of the map. Asia was typically the size of the other two continents combined and the map was oriented towards the east",
                 "IMAGE" : "t_o_map.jpg"
 			},
 			"type" : "Feature"  
@@ -103,7 +103,7 @@ var bldgData = {
 			"id" : "7",
 			"properties" : {
 				"NAME" : "1300 AD: Portolan Charts",
-				"BODY" : "in the 1300s Italian geographer Pietro Vesconte pioneers the usage of portolan charts, which are navigational maps based on compass directions and estimated distances observed by the pilots at sea.",
+				"BODY" : "in the 1300s Italian geographer Pietro Vesconte pioneers the usage of portolan charts, which are navigational maps based on compass directions and estimated distances observed by the pilots at sea. . The portolan charts are characterized by a series of straight lines, or rhumb lines, that represent compass bearings.",
                 "IMAGE" : "portolan.jpg"
 			},
 			"type" : "Feature"
