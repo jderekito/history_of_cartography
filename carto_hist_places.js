@@ -1,14 +1,38 @@
 var bldgData = {
 	"features" : [{
 			"geometry" : { 
+				"coordinates" : [158.215072, 6.887481],
+				"type" : "Point"
+			},
+			"id" : "1",
+			"properties" : {
+				"NAME" : "Perhaps 1000 BC: Polynesian Stick Maps",
+				"BODY" : "The Pacific Islanders of Micronesia made maps from sticks and shells to help navigate throughout the Pacific Ocean.",
+                "IMAGE" : "stickmaps.jpg"
+			},
+			"type" : "Feature"
+		}, {
+			"geometry" : { 
 				"coordinates" : [43.679291, 33.223191],
 				"type" : "Point"
 			},
 			"id" : "1",
 			"properties" : {
 				"NAME" : "600 BC: First world map",
-				"BODY" : "Babylonians believed to the first to make a map or attempt to map their world. This map is credited to Anaximander credited with invention of map-drawing.",
+				"BODY" : "Babylonians believed to the first to make a map or attempt to map their world. This world map dates from about 600 B.C. Here Mesopotamia is in the center of the world, and an ocean lies at the margins of the known land areas. This area is considered the cradle area of western civilization including Sumer, Babylonian and Assyrian empires.",
                 "IMAGE" : "firstworldmap.jpg"
+			},
+			"type" : "Feature"
+		}, {
+			"geometry" : {
+				"coordinates" : [104.195397, 35.861660],
+				"type" : "Point"
+			},
+			"id" : "3",
+			"properties" : {
+				"NAME" : "400 BC: Chinese discover magnetic fields",
+				"BODY" : "The Chinese also discovered magnetic fields and invented the compass. Although they did not use it for cartographic purposes, navigators later learned its value in navigation as well as map-making..",
+                "IMAGE" : "chinesemagnetic.jpg"
 			},
 			"type" : "Feature"
 		}, {
@@ -19,7 +43,7 @@ var bldgData = {
 			"id" : "2",
 			"properties" : {
 				"NAME" : "384-322 BC: Aristotle on a spherical earth",
-				"BODY" : "Aristotle believes earth's sphericity can be proven through visual observation.",
+				"BODY" : "Aristotle believes earth's sphericity can be proven through visual observation. Aristotle believes earth's sphericity can be proven through visual observation. In the 4th century B.C., the earth began to be visualized as a sphere, the most perfect of all forms rather than as a disc shown here.",
                 "IMAGE" : "aristotle.jpg"
 			},
 			"type" : "Feature"
@@ -55,7 +79,7 @@ var bldgData = {
 			"id" : "5",
 			"properties" : {
 				"NAME" : "150-125 BC: Ptolemy",
-				"BODY" : "Ptolemy first to apply the scientific principles to the idea of mapping in a book called Geography… put in to a book the ideas of scale and other important cartographic principles …. Archived at the library in Alexandria, Egypt, which was burned 391 AD by Christian mobs… around this time we have the start of what is often referred to as the middle ages",
+				"BODY" : "Ptolemy first to apply the scientific principles to the idea of mapping in a book called Geography… put in to a book the ideas of scale and other important cartographic principles …. Archived at the library in Alexandria, Egypt, which was burned 391 AD by Christian mobs… around this time we have the start of what is often referred to as the middle ages. Ptolemy himself was a part of a royal family which ruled for a while in Egypt, the Ptolemaic dynasty, which included the famous female ruler Cleopatra.",
                 "IMAGE" : "ptolemy.jpg"
 			},
 			"type" : "Feature"
@@ -132,6 +156,18 @@ var bldgData = {
 			},
 			"type" : "Feature"
 		},  {
+			"geometry" : {
+				"coordinates" : [-120.516395, 34.758210],
+				"type" : "Point"
+			},
+			"id" : "11",
+			"properties" : {
+				"NAME" : "1972- present: Landsat",
+				"BODY" : "In 1972 the Earth Resources Technology Satellite was launched. This has been longest-running enterprise for acquisition of satellite imagery of Earth.",
+                "IMAGE" : "landsat.jpg"
+			},
+			"type" : "Feature"
+		},  { 
 			"geometry" : {
 				"coordinates" : [-74.005941, 40.712784],
 				"type" : "Point"

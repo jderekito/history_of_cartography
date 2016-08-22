@@ -218,10 +218,10 @@
                       thisLayer.on('click', function(e){
                         //map.setView(e.latlng, 13);
                         var url = 'images/' + thisLayer.feature.properties.IMAGE;
-                        $('#dialog').dialog({resizable:true});
+                        $('#dialog').dialog({resizable:true,height:500,width:600});
                         $('#dialog').dialog('open').text(thisLayer.feature.properties.BODY);
                         $('#dialog').dialog('option', 'title', thisLayer.feature.properties.NAME)
-                        $("#dialog").append("<img src='"+url+"' id='myNewImage' />");
+                        $("#dialog").append("<center><img src='"+url+"' id='myNewImage' /></center>");
                       });
                     });
                   }
