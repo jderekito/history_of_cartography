@@ -43,7 +43,7 @@ var bldgData = {
 			"id" : "2",
 			"properties" : {
 				"NAME" : "384-322 BC: Aristotle on a spherical earth",
-				"BODY" : "Aristotle believes earth's sphericity can be proven through visual observation. Aristotle believes earth's sphericity can be proven through visual observation. In the 4th century B.C., the earth began to be visualized as a sphere, the most perfect of all forms rather than as a disc shown here.",
+				"BODY" : "Aristotle believes earth's sphericity can be proven through visual observation. Aristotle believes earth's sphericity can be proven through visual observation. In the 4th century B.C., the earth began to be visualized as a sphere, the most perfect of all forms rather than as a disc shown here. Aristotle was influenced by the earlier work of Anaximander in the in the 6th century BC",
                 "IMAGE" : "aristotle.jpg"
 			},
 			"type" : "Feature"
@@ -85,13 +85,25 @@ var bldgData = {
 			"type" : "Feature"
 		},  {
 			"geometry" : {
+				"coordinates" : [29.918739, 31.200092],
+				"type" : "Point"
+			},
+			"id" : "6",
+			"properties" : {
+				"NAME" : "391 AD: Alexandria Library Burned",
+				"BODY" : "Christian mobs burned the library at Alexandra. After Ptolemy, there was a steady decline in cartography, and it disappeared from the Western world until the Middle Ages.   The Romans were interested mainly in practical maps, such as military maps. The Romans also revived the ‘flat disc’ theory of the shape of the earth. As it turns out copies of Ptolemy’s Geography that had been rescued before the raids on Alexandria would be rediscovered in Constantinople, in Modern day Turkey, in 1300.",
+                "IMAGE" : "burninglibrary.jpg"
+			},
+			"type" : "Feature"  
+		},  {
+			"geometry" : {
 				"coordinates" : [-5.984459, 37.389092],
 				"type" : "Point"
 			},
 			"id" : "6",
 			"properties" : {
 				"NAME" : "600-1400 AD: T-O Maps",
-				"BODY" : "Isidore of Seville, a bishop in Spain where The T is the Mediterranean, dividing the three continents, Asia, Europe and Africa, and the O is the surrounding Ocean. Jerusalem was generally represented in the center of the map. Asia was typically the size of the other two continents combined and the map was oriented towards the east",
+				"BODY" : "Credited with being started by Isidore of Seville, a bishop in Spain, where The T is the Mediterranean, dividing the three continents, Asia, Europe and Africa, and the O is the surrounding Ocean. Jerusalem was generally represented in the center of the map. Asia was typically the size of the other two continents combined and the map was oriented towards the east",
                 "IMAGE" : "t_o_map.jpg"
 			},
 			"type" : "Feature"  
@@ -103,7 +115,7 @@ var bldgData = {
 			"id" : "7",
 			"properties" : {
 				"NAME" : "1300 AD: Portolan Charts",
-				"BODY" : "in the 1300s Italian geographer Pietro Vesconte pioneers the usage of portolan charts, which are navigational maps based on compass directions and estimated distances observed by the pilots at sea. . The portolan charts are characterized by a series of straight lines, or rhumb lines, that represent compass bearings.",
+				"BODY" : "in the 1300s Italian geographer Pietro Vesconte pioneers the usage of portolan charts, which are navigational maps based on compass directions and estimated distances observed by the pilots at sea. The portolan charts are characterized by a series of straight lines, or rhumb lines, that represent compass bearings.",
                 "IMAGE" : "portolan.jpg"
 			},
 			"type" : "Feature"
