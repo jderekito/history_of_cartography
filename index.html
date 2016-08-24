@@ -213,6 +213,9 @@
                         $('#dialog').dialog('open').text(thisLayer.feature.properties.BODY);
                         $('#dialog').dialog('option', 'title', thisLayer.feature.properties.NAME)
                         $("#dialog").append("<center><img src='"+url+"' id='myNewImage' /></center>");
+                        if (thisLayer.feature.properties.URL != null){
+                            $("#dialog").append("<center><a href='"+thisLayer.feature.properties.URL+"' target='_blank'>Link</a></center>");
+                        }
                       });
                     });
                   }

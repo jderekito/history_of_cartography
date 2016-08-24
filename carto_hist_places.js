@@ -8,7 +8,8 @@ var bldgData = {
 			"properties" : {
 				"NAME" : "Perhaps 1000 BC: Polynesian Stick Maps",
 				"BODY" : "The Pacific Islanders of Micronesia made maps from sticks and shells to help navigate throughout the Pacific Ocean.",
-                "IMAGE" : "stickmaps.jpg"
+                "IMAGE" : "stickmaps.jpg", 
+                "URL"   : "http://oceantoday.noaa.gov/oceanshowsusway/"
 			},
 			"type" : "Feature"
 		}, {
@@ -68,7 +69,8 @@ var bldgData = {
 			"properties" : {
 				"NAME" : "276-195 BC: Eratosthenes",
 				"BODY" : "Eratosthenes makes first scientific estimate of earth's circumference",
-                "IMAGE" : "eratosthenes.jpg"
+                "IMAGE" : "eratosthenes.jpg",
+                "URL" : "https://vimeo.com/70467220"
 			},
 			"type" : "Feature"
 		},  {
@@ -116,7 +118,7 @@ var bldgData = {
 			"properties" : {
 				"NAME" : "1492: Columbus Sails",
 				"BODY" : "While Ptolemy had understood the that the earth was spherical he drastically understated the circumference of the earth. Based on this misunderstanding the Italian navigator Columbus was convinced that Asia was closer that it was and instead landed in what is now known of as the Bahamas.",
-                "IMAGE" : "portolan.jpg"
+                "IMAGE" : "columbus.jpg"
 			},
 			"type" : "Feature"
 		},  {
