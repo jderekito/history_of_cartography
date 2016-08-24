@@ -79,7 +79,7 @@ var bldgData = {
 			"id" : "5",
 			"properties" : {
 				"NAME" : "150-125 BC: Ptolemy",
-				"BODY" : "Ptolemy first to apply the scientific principles to the idea of mapping in a book called Geography… put in to a book the ideas of scale and other important cartographic principles …. Archived at the library in Alexandria, Egypt, which was burned 391 AD by Christian mobs… around this time we have the start of what is often referred to as the middle ages. Ptolemy himself was a part of a royal family which ruled for a while in Egypt, the Ptolemaic dynasty, which included the famous female ruler Cleopatra.",
+				"BODY" : "Ptolemy first to apply the scientific principles to the idea of mapping in a book called Geography… put in to a book the ideas of scale and other important cartographic principles such as scale, perspective and the use of grids…. Archived at the library in Alexandria, Egypt, which was burned 391 by Christian mobs… around this time we have the start of what is often referred to as the “middle ages”. Ptolemy himself was a part of a royal family which ruled for a while in Egypt, the Ptolemaic dynasty, which included the famous female ruler Cleopatra.",
                 "IMAGE" : "ptolemy.jpg"
 			},
 			"type" : "Feature"
@@ -90,8 +90,8 @@ var bldgData = {
 			},
 			"id" : "6",
 			"properties" : {
-				"NAME" : "391 AD: Alexandria Library Burned",
-				"BODY" : "Christian mobs burned the library at Alexandra. After Ptolemy, there was a steady decline in cartography, and it disappeared from the Western world until the Middle Ages.   The Romans were interested mainly in practical maps, such as military maps. The Romans also revived the ‘flat disc’ theory of the shape of the earth. As it turns out copies of Ptolemy’s Geography that had been rescued before the raids on Alexandria would be rediscovered in Constantinople, in Modern day Turkey, in 1300.",
+				"NAME" : "391: Alexandria Library Burned",
+				"BODY" : "Christian mobs burned the library at Alexandra. After Ptolemy, there was a steady decline in cartography, and it disappeared from the Western world until the Middle Ages.   The Romans were interested mainly in practical maps, such as military maps. The romans were the first to make road maps as their empire expanded. The Romans also revived the ‘flat disc’ theory of the shape of the earth. As it turns out copies of Ptolemy’s Geography that had been rescued before the raids on Alexandria would be rediscovered in Constantinople, in Modern day Turkey, in 1300.",
                 "IMAGE" : "burninglibrary.jpg"
 			},
 			"type" : "Feature"  
@@ -102,11 +102,23 @@ var bldgData = {
 			},
 			"id" : "6",
 			"properties" : {
-				"NAME" : "600-1400 AD: T-O Maps",
+				"NAME" : "600-1400: T-O Maps",
 				"BODY" : "Credited with being started by Isidore of Seville, a bishop in Spain, where The T is the Mediterranean, dividing the three continents, Asia, Europe and Africa, and the O is the surrounding Ocean. Jerusalem was generally represented in the center of the map. Asia was typically the size of the other two continents combined and the map was oriented towards the east",
                 "IMAGE" : "t_o_map.jpg"
 			},
 			"type" : "Feature"  
+		},  {
+			"geometry" : {
+				"coordinates" : [-77.39628, 25.034280],
+				"type" : "Point"
+			},
+			"id" : "7",
+			"properties" : {
+				"NAME" : "1492: Columbus Sails",
+				"BODY" : "While Ptolemy had understood the that the earth was spherical he drastically understated the circumference of the earth. Based on this misunderstanding the Italian navigator Columbus was convinced that Asia was closer that it was and instead landed in what is now known of as the Bahamas.",
+                "IMAGE" : "portolan.jpg"
+			},
+			"type" : "Feature"
 		},  {
 			"geometry" : {
 				"coordinates" : [12.315515, 45.440847],
@@ -114,7 +126,7 @@ var bldgData = {
 			},
 			"id" : "7",
 			"properties" : {
-				"NAME" : "1300 AD: Portolan Charts",
+				"NAME" : "1300: Portolan Charts",
 				"BODY" : "in the 1300s Italian geographer Pietro Vesconte pioneers the usage of portolan charts, which are navigational maps based on compass directions and estimated distances observed by the pilots at sea. The portolan charts are characterized by a series of straight lines, or rhumb lines, that represent compass bearings.",
                 "IMAGE" : "portolan.jpg"
 			},
@@ -126,7 +138,7 @@ var bldgData = {
 			},
 			"id" : "8",
 			"properties" : {
-				"NAME" : "1569 AD: Mercator's Projection",
+				"NAME" : "1569: Mercator's Projection",
 				"BODY" : "During the Renaissance Gerardus Mercator, of the famous Belgium school of cartography, comes up with the projection that made it possible for navigators to draw straight lines between two points and use compasses to navigate between those points. The poles are distorted e.g. Greenland.",
                 "IMAGE" : "mercator.gif"
 			},
@@ -138,7 +150,7 @@ var bldgData = {
 			},
 			"id" : "9",
 			"properties" : {
-				"NAME" : "1669 AD: First Topographic Map",
+				"NAME" : "1669: First Topographic Map",
 				"BODY" : "Cassini family hired to map France by means of geometric principles of triangulation… this job took until 1745 when it was published as a map set that provided the first basis for large scale topopgraphic mapping.",
                 "IMAGE" : "firsttopo.jpg"
 			},
@@ -150,7 +162,7 @@ var bldgData = {
 			},
 			"id" : "10",
 			"properties" : {
-				"NAME" : "1700 AD: Tracking Longitude in Transit",
+				"NAME" : "1700: Tracking Longitude on the Sea",
 				"BODY" : "John Harrison, a self-educated English carpenter and clockmaker, solves the problem of calculating longitude while at sea.",
                 "IMAGE" : "longitude.jpg"
 			},
@@ -168,6 +180,18 @@ var bldgData = {
 			},
 			"type" : "Feature"
 		},  {
+			"geometry" : {
+				"coordinates" : [-80.607713, 28.392218],
+				"type" : "Point"
+			},
+			"id" : "11",
+			"properties" : {
+				"NAME" : "1966-1968: Lunar Mapping",
+				"BODY" : "The accurate mapping of the moon, begun by John F. Kennedy, ushered in the 2nd Great Age of Discovery. An accurate mapping of the moon was necessary for the Apollo missions to be able land on the moon. Five unmanned moon orbiting satellites were able to provide this mapping.",
+                "IMAGE" : "moonmapping.jpg"
+			},
+			"type" : "Feature"
+		},  { 
 			"geometry" : {
 				"coordinates" : [-120.516395, 34.758210],
 				"type" : "Point"
@@ -187,7 +211,7 @@ var bldgData = {
 			"id" : "11",
 			"properties" : {
 				"NAME" : "1994- present: COMSTAT",
-				"BODY" : "NYPD begins using maps and statistics together to manage crime and policing efforts.",
+				"BODY" : "NYPD begins using maps and statistics together to manage crime and policing efforts. With COMSTAT crime mapping went from pins on paper wall maps, to a digital repository of crime information for directing resources.",
                 "IMAGE" : "comstat.jpg"
 			},
 			"type" : "Feature"

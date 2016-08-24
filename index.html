@@ -155,32 +155,23 @@
                 //  position: 'topright'
                 //}).addTo(map);
 
-                var tnmBasemapViewer = L.tileLayer('http://basemap.nationalmap.gov/ArcGIS/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
+                        var tnmBasemapViewer = L.tileLayer('http://basemap.nationalmap.gov/ArcGIS/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
                         maxZoom: 14,
                         attribution: "U.S. Department of the Interior"
                         });
 
-                        var tnmBasemapNavigator = L.tileLayer('http://navigator.er.usgs.gov/tiles/tcr.cgi/{z}/{x}/{y}.png', {
-                                maxZoom: 20,
-                                attribution: "U.S. Department of the Interior"
-                                });
-
-                        // Add overlays
-                        var highways = L.tileLayer.wms("http://services.nationalmap.gov/ArcGIS/services/transportation/MapServer/WMSServer?", {
-                            layers: '6',
-                            format: 'image/png',
-                            transparent: true,
+                        var fancyBasemap = L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg', {
+                          maxZoom: 19,
+                          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                         });
 
                         // Add baselayers and overlays to groups
                         var baseLayers = {
                             "The National Map (Viewer)" : tnmBasemapViewer,
-                            "The National Map (Navigator)" : tnmBasemapNavigator
+                            "Get Fancy" : fancyBasemap
                         };
-                        var overlays = {
-                            "Highways": highways
-                        };
-                        var controlLayers = L.control.layers(baseLayers, overlays);
+
+                        var controlLayers = L.control.layers(baseLayers);
 
                         // Add the main baselayer to the map as a default (so it loads when the map
                         // is loaded
@@ -246,6 +237,5 @@
           </div>
         </div>
         <script src="carto_hist_places.js"></script>
-        <!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/67683/ccbuildings.js"></script> -->
     </body>
 </html>
