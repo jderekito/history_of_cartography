@@ -75,6 +75,18 @@ var bldgData = {
 			"type" : "Feature"
 		},  {
 			"geometry" : {
+				"coordinates" : [28.217483, 36.434963],
+				"type" : "Point"
+			},
+			"id" : "4",
+			"properties" : {
+				"NAME" : "190-125 BC: Graticule",
+				"BODY" : "Hipparchus, a predecessor of Eratosthenes, had an observatory on the Greek island of Rhodes where he made many of these discoveries. Hipparchus proposed a set of equally spaced east and west lines called parallels, or latitude, and added a set of north/south lines called meridians (or longitude) that converged at the poles… which we now call the graticule. Parallels are constantly parallel, and meridians converge at the poles.",
+                "IMAGE" : "graticule.jpg"
+			},
+			"type" : "Feature"
+		},  {
+			"geometry" : {
 				"coordinates" : [29.918739, 31.200092],
 				"type" : "Point"
 			},
@@ -201,8 +213,9 @@ var bldgData = {
 			"id" : "11",
 			"properties" : {
 				"NAME" : "1972- present: Landsat",
-				"BODY" : "In 1972 the Earth Resources Technology Satellite was launched. This has been longest-running enterprise for acquisition of satellite imagery of Earth.",
-                "IMAGE" : "landsat.jpg"
+				"BODY" : "In 1972 the Earth Resources Technology Satellite, aka Landsat 1, was launched from Vandenberg Air Force Base, California. This has been longest-running enterprise for acquisition of satellite imagery of Earth.",
+                "IMAGE" : "landsat.jpg", 
+                "URL"   : "https://youtu.be/Ezn1ne2Fj6Y"
 			},
 			"type" : "Feature"
 		},  { 

@@ -167,15 +167,16 @@
 
                         // Add baselayers and overlays to groups
                         var baseLayers = {
+                            "Get Fancy" : fancyBasemap,
                             "The National Map (Viewer)" : tnmBasemapViewer,
-                            "Get Fancy" : fancyBasemap
                         };
 
                         var controlLayers = L.control.layers(baseLayers);
 
                         // Add the main baselayer to the map as a default (so it loads when the map
                         // is loaded
-                        tnmBasemapViewer.addTo(map);
+                        //tnmBasemapViewer.addTo(map);
+                        fancyBasemap.addTo(map);
 
                         // Add the layer selector control to the map
                         controlLayers.addTo(map);                
@@ -197,9 +198,10 @@
                       buildingLayers.addLayer(thisLayer);
                       var notifyIcon = L.divIcon({
                         className: 'notify-icon',
-                        iconSize: [25, 25],
+                        iconSize: [50, 50],
                         html: '<span></span>'
                         });
+                                               
                       var notifyMarker = L.marker([thisLat,thisLon], {icon: notifyIcon})
                       buildingLayers.addLayer(notifyMarker);
                       
