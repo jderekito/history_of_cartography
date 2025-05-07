@@ -1,250 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historical Events Map</title>
-    <!-- Load CSS first -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-    
-    <style>
-        body {
-          margin: 0;
-          overflow: hidden;
-          font-family: 'Roboto', sans-serif;
-          font-size: 90%;
-        }
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historical Events Map</title>
+  
+  <!-- Load CSS -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
 
-        #mapwrap {
-          width: 100%;
-          height: 100vh;
-          position: relative;
-          overflow: hidden;
-        }
-
-        #leafletmap {
-          width: 100%;
-          height: 100vh;
-        }
-
-        #toolbar {
-          background: rgba(255, 255, 255, 1);
-          opacity: .6;
-          width: 200px;
-          height: 100vh;
-          position: absolute;
-          left: -200px;
-          z-index: 1000;
-          transition: .5s left;
-          padding: 20px;
-          box-sizing: border-box;
-        }
-
-        #toolbar.open {
-          left: 0;
-          opacity: .95;
-        }
-
-        #toolbar .cartograpy {
-          height: 100px;
-          width: 25px;
-          background: #000;
-          box-shadow: 1px 0 2px rgba(0, 0, 0, .3);
-          position: absolute;
-          right: -25px;
-          top: 40%;
-          border-top-right-radius: 3px;
-          border-bottom-right-radius: 3px;
-          border: 1px solid #333;
-          cursor: pointer;
-        }
-
-        .cartograpy span {
-          color: #fff;
-          display: inline-block;
-          position: relative;
-          transform: rotate(90deg);
-          top: 39px;
-          left: -21px;
-        }
-
-        #events {
-          overflow-y: scroll;
-          max-height: 95vh;
-        }
-
-        #toolbar ul {
-          margin: 0;
-          padding: 0;
-        }
-
-        #toolbar li {
-          list-style-type: none;
-          border-bottom: 1px solid #ccc;
-          padding: 6px 3px;
-          cursor: pointer;
-        }
-
-        #toolbar li:hover {
-          color: #666;
-        }
-
-        .notify-icon span {
-          display: inline-block;
-          border: 1px solid orange;
-          border-radius: 50%;
-          height: 24px; 
-          width: 24px;
-          animation: pulse .6s 4 forwards;
-          transform-origin: center center;
-        }
-        
-        @keyframes pulse {
-          0% {
-            transform: scale(5.5);
-            opacity: .2;
-          }
-          50% {
-            opacity: .8;
-          }
-          100% {
-            transform: scale(.1);
-            opacity: 1;
-          }
-        }
-    </style>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+      font-size: 90%;
+    }
+    #mapwrap { width: 100%; height: 100vh; position: relative; overflow: hidden; }
+    #leafletmap { width: 100%; height: 100vh; }
+    #toolbar {
+      background: rgba(255, 255, 255, 1);
+      opacity: .6;
+      width: 200px;
+      height: 100vh;
+      position: absolute;
+      left: -200px;
+      z-index: 1000;
+      transition: .5s left;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    #toolbar.open { left: 0; opacity: .95; }
+    #toolbar .cartograpy {
+      height: 100px;
+      width: 25px;
+      background: #000;
+      box-shadow: 1px 0 2px rgba(0, 0, 0, .3);
+      position: absolute;
+      right: -25px;
+      top: 40%;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      border: 1px solid #333;
+      cursor: pointer;
+    }
+    .cartograpy span {
+      color: #fff;
+      display: inline-block;
+      position: relative;
+      transform: rotate(90deg);
+      top: 39px;
+      left: -21px;
+    }
+    #events { overflow-y: scroll; max-height: 95vh; }
+    #toolbar ul { margin: 0; padding: 0; }
+    #toolbar li {
+      list-style-type: none;
+      border-bottom: 1px solid #ccc;
+      padding: 6px 3px;
+      cursor: pointer;
+    }
+    #toolbar li:hover { color: #666; }
+    .notify-icon span {
+      display: inline-block;
+      border: 1px solid orange;
+      border-radius: 50%;
+      height: 24px;
+      width: 24px;
+      animation: pulse .6s 4 forwards;
+      transform-origin: center center;
+    }
+    @keyframes pulse {
+      0% { transform: scale(5.5); opacity: .2; }
+      50% { opacity: .8; }
+      100% { transform: scale(.1); opacity: 1; }
+    }
+    /* Boost z-index of jQuery UI dialog */
+    .ui-dialog { z-index: 2000 !important; }
+  </style>
 </head>
+
 <body>
-    <div id="mapwrap">
-      <div id="toolbar">
-        <div class="cartograpy">
-          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Events</span>
-        </div>
-        <div id="events">
-          <h2>Historical Events</h2>
-          <ul>
-          </ul>
-        </div>
+  <div id="mapwrap">
+    <div id="toolbar">
+      <div class="cartograpy">
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Events</span>
       </div>
-      <div id="leafletmap">
-        <div id="dialog" title="Event" style="display:none">Some text</div>
+      <div id="events">
+        <h2>Historical Events</h2>
+        <ul></ul>
       </div>
     </div>
+    <div id="leafletmap"></div>
+  </div>
 
-    <!-- Load JavaScript libraries -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    
-    <!-- Load the data file first -->
-    <script src="carto_hist_places.js"></script>
-    
-    <script>
-        // Wait for document to be ready and jQuery to be properly loaded
-        $(document).ready(function () {
-            // Toggle sidebar
-            $('#toolbar .cartograpy').on('click', function() {
-              $(this).parent().toggleClass('open');
+  <!-- Move dialog OUTSIDE the map container -->
+  <div id="dialog" title="Event" style="display:none">Some text</div>
+
+  <!-- JS Libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script src="carto_hist_places.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#toolbar .cartograpy').on('click', function() {
+        $(this).parent().toggleClass('open');
+      });
+
+      $("#dialog").dialog({
+        autoOpen: false,
+        resizable: false,
+        modal: true,
+        width: 600,
+        height: 500
+      });
+
+      var map = L.map('leafletmap', { zoomControl: false });
+      new L.Control.Zoom({ position: 'topright' }).addTo(map);
+
+      var tnmBasemapViewer = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 16,
+        attribution: "U.S. Department of the Interior | USGS"
+      }).addTo(map);
+
+      map.setView([37.983810, 23.727539], 3);
+      var buildingLayers = L.layerGroup().addTo(map);
+
+      if (typeof bldgData !== 'undefined') {
+        L.geoJson(bldgData, {
+          onEachFeature: function(feature, layer) {
+            var thisLayer = layer;
+            var $listItem = $('<li>').html(feature.properties.NAME).appendTo('#toolbar ul');
+
+            $listItem.on('click', function(){
+              buildingLayers.clearLayers();
+
+              var thisLat = thisLayer.feature.geometry.coordinates[1];
+              var thisLon = thisLayer.feature.geometry.coordinates[0];
+              map.panTo([thisLat, thisLon]);
+              buildingLayers.addLayer(thisLayer);
+
+              var notifyIcon = L.divIcon({
+                className: 'notify-icon',
+                iconSize: [50, 50],
+                html: '<span></span>'
+              });
+              var notifyMarker = L.marker([thisLat, thisLon], {icon: notifyIcon});
+              buildingLayers.addLayer(notifyMarker);
+
+              if(map.getSize().x < 768){
+                $('#toolbar').removeClass('open');
+              }
+
+              thisLayer.on('click', function(e){
+                $('#dialog').dialog('option', 'title', thisLayer.feature.properties.NAME);
+                $('#dialog').empty().text(thisLayer.feature.properties.BODY);
+
+                if (thisLayer.feature.properties.IMAGE) {
+                  var url = 'images/' + thisLayer.feature.properties.IMAGE;
+                  $("#dialog").append("<center><img src='" + url + "' alt='" + 
+                    thisLayer.feature.properties.NAME + "' /></center>");
+                }
+
+                if (thisLayer.feature.properties.URL) {
+                  $("#dialog").append("<center><a href='" + 
+                    thisLayer.feature.properties.URL + "' target='_blank'>Learn More</a></center>");
+                }
+
+                $('#dialog').dialog('open');
+              });
             });
-            
-            // Initialize dialog
-            $("#dialog").dialog({
-                autoOpen: false,
-                resizable: false,
-                modal: true,
-                width: 600,
-                height: 500
-            });                
-
-            // Initialize map
-            var map = L.map('leafletmap', {
-              zoomControl: false
-            });
-            
-            new L.Control.Zoom({
-              position: 'topright'
-            }).addTo(map);
-
-            // Fixed tile layer URL to use HTTPS - USGS Topo Map
-            var tnmBasemapViewer = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
-                maxZoom: 16,
-                attribution: "U.S. Department of the Interior | USGS"
-            });
-
-            // Add the USGS layer to the map by default
-            tnmBasemapViewer.addTo(map);
-            
-            // Set initial view
-            map.setView([37.983810, 23.727539], 3);
-            
-            // Create layer group for historical events
-            var buildingLayers = L.layerGroup().addTo(map);
-            
-            // When the historical places data is loaded (from carto_hist_places.js)
-            if (typeof bldgData !== 'undefined') {
-                L.geoJson(bldgData, {
-                    onEachFeature: function(feature, layer) {
-                        var thisLayer = layer;
-                        
-                        // Create list item in sidebar
-                        var $listItem = $('<li>').html(feature.properties.NAME).appendTo('#toolbar ul');
-                        
-                        $listItem.on('click', function(){
-                            buildingLayers.clearLayers(); // remove existing markers
-                            
-                            var thisLat = thisLayer.feature.geometry.coordinates[1];
-                            var thisLon = thisLayer.feature.geometry.coordinates[0];
-                            
-                            // Pan to location
-                            map.panTo([thisLat, thisLon]);
-                            
-                            // Add marker to layer group
-                            buildingLayers.addLayer(thisLayer);
-                            
-                            // Create notification icon
-                            var notifyIcon = L.divIcon({
-                                className: 'notify-icon',
-                                iconSize: [50, 50],
-                                html: '<span></span>'
-                            });
-                                                   
-                            var notifyMarker = L.marker([thisLat, thisLon], {icon: notifyIcon});
-                            buildingLayers.addLayer(notifyMarker);
-                            
-                            // Close sidebar on mobile
-                            if(map.getSize().x < 768){
-                                $('#toolbar').removeClass('open');
-                            }
-                            
-                            // Add click event to open dialog
-                            thisLayer.on('click', function(e){
-                                $('#dialog').dialog('option', 'title', thisLayer.feature.properties.NAME);
-                                $('#dialog').empty().text(thisLayer.feature.properties.BODY);
-                                
-                                // Add image if available
-                                if (thisLayer.feature.properties.IMAGE) {
-                                    var url = 'images/' + thisLayer.feature.properties.IMAGE;
-                                    $("#dialog").append("<center><img src='" + url + "' alt='" + 
-                                        thisLayer.feature.properties.NAME + "' /></center>");
-                                }
-                                
-                                // Add link if available
-                                if (thisLayer.feature.properties.URL) {
-                                    $("#dialog").append("<center><a href='" + 
-                                        thisLayer.feature.properties.URL + 
-                                        "' target='_blank'>Learn More</a></center>");
-                                }
-                                
-                                $('#dialog').dialog('open');
-                            });
-                        });
-                    }
-                });
-            } else {
-                console.error("Historical places data (bldgData) is not defined. Make sure carto_hist_places.js is properly loaded.");
-            }
+          }
         });
-    </script>
+      } else {
+        console.error("Historical places data (bldgData) is not defined. Make sure carto_hist_places.js is properly loaded.");
+      }
+    });
+  </script>
 </body>
 </html>
