@@ -41,13 +41,14 @@
       width: 200px;
       height: 100vh;
       position: absolute;
-      left: -200px;
+      left: 0; /* Changed from -200px to 0 to be open by default */
       z-index: 1000;
       transition: .5s left;
       padding: 20px;
       box-sizing: border-box;
+      opacity: .95; /* Added default opacity when open */
     }
-    #toolbar.open { left: 0; opacity: .95; }
+    #toolbar.closed { left: -200px; opacity: .6; } /* Added new class for closed state */
     #toolbar .cartograpy {
       height: 100px;
       width: 25px;
@@ -99,7 +100,7 @@
 
 <body>
   <div id="mapwrap">
-    <div id="toolbar">
+    <div id="toolbar" class="open"> <!-- Added 'open' class by default -->
       <div class="cartograpy">
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Events</span>
       </div>
@@ -123,7 +124,7 @@
   <script>
     $(document).ready(function () {
       $('#toolbar .cartograpy').on('click', function() {
-        $(this).parent().toggleClass('open');
+        $(this).parent().toggleClass('closed'); // Changed to toggle 'closed' class instead
       });
 
       $("#dialog").dialog({
@@ -168,7 +169,7 @@
               buildingLayers.addLayer(notifyMarker);
 
               if(map.getSize().x < 768){
-                $('#toolbar').removeClass('open');
+                $('#toolbar').addClass('closed'); // Changed to add 'closed' class
               }
 
               thisLayer.on('click', function(e){
