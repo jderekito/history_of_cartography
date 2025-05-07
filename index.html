@@ -166,30 +166,14 @@
               position: 'topright'
             }).addTo(map);
 
-            // Fixed tile layer URLs to use HTTPS
+            // Fixed tile layer URL to use HTTPS - USGS Topo Map
             var tnmBasemapViewer = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
-                maxZoom: 14,
-                attribution: "U.S. Department of the Interior"
+                maxZoom: 16,
+                attribution: "U.S. Department of the Interior | USGS"
             });
 
-            var fancyBasemap = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg', {
-                maxZoom: 14,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | Map tiles by <a href="https://stamen.com">Stamen Design</a>'
-            });
-
-            // Add baselayers to control
-            var baseLayers = {
-                "USGS Topo": tnmBasemapViewer,
-                "Watercolor": fancyBasemap
-            };
-
-            var controlLayers = L.control.layers(baseLayers);
-
-            // Add the watercolor layer to the map by default
-            fancyBasemap.addTo(map);
-
-            // Add the layer control to the map
-            controlLayers.addTo(map);
+            // Add the USGS layer to the map by default
+            tnmBasemapViewer.addTo(map);
             
             // Set initial view
             map.setView([37.983810, 23.727539], 3);
